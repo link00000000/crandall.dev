@@ -41,7 +41,7 @@
     }
     .email {
       font-size: 1.08rem;
-      margin-bottom: 1.8em;
+      margin-bottom: 1.2em;
       font-weight: 500;
     }
     .email a {
@@ -55,6 +55,38 @@
     .email a:focus {
       border-bottom: 1px solid #245e8e;
     }
+    .links {
+      margin-top: 1.2em;
+      margin-bottom: 2em;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 0.7em;
+    }
+    .chip-link {
+      display: inline-block;
+      padding: 0.18em 0.85em 0.16em 0.78em;
+      border-radius: 14px;
+      background: #eaf2fb;
+      color: #245e8e;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #b3c7e614;
+      text-decoration: none;
+      border: 1px solid #d7e5f6;
+      transition: background 0.15s, color 0.15s, box-shadow 0.15s, border-color 0.15s;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+    }
+    .chip-link:hover,
+    .chip-link:focus {
+      background: #f5fafd;
+      color: #18426d;
+      box-shadow: 0 2px 8px #bddcf718;
+      border-color: #b5cfea;
+      text-decoration: none;
+      outline: none;
+    }
     .footer {
       font-size: 0.96rem;
       color: #a0b4c1;
@@ -63,10 +95,11 @@
       text-align: center;
       user-select: none;
     }
-
     @media (max-width: 570px) {
       h1 { font-size: 1.45rem; }
-      p, .email, .footer { font-size: 1rem; }
+      p, .email, .footer, .links .chip-link { font-size: 0.96rem; }
+      .links { gap: 0.48em; }
+      .chip-link { padding: 0.14em 0.66em 0.14em 0.66em; }
     }
   </style>
 </head>
@@ -78,6 +111,10 @@
     </p>
     <div class="email">
       <a href="mailto:logan@crandall.dev">logan@crandall.dev</a>
+    </div>
+    <div class="links">
+      <a class="chip-link" href="https://www.linkedin.com/in/logan-crandall" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="chip-link" href="https://github.com/link00000000" target="_blank" rel="noopener">GitHub</a>
     </div>
   </main>
   <div class="footer">&copy; 2025 Crandall Software LLC</div>
