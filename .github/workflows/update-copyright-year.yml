@@ -1,0 +1,36 @@
+name: Update Copyright Year
+
+on:
+  schedule:
+    - cron: '0 0 1 1 *' # Every January 1 at 00:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update-year:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set current year
+        id: year
+        run: echo "YEAR=$(date +'%Y')" >> $GITHUB_OUTPUT
+
+      - name: Update year in index.html
+        run: |
+          sed -i -E "s/&copy; [0-9]{4} Crandall Software LLC/&copy; ${{ steps.year.outputs.YEAR }} Crandall Software LLC/g" index.html
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Update copyright year"
+          git push
