@@ -22,7 +22,7 @@ jobs:
 
       - name: Update year in index.html
         run: |
-          sed -i -E "s/&copy; [0-9]{4} Crandall Software LLC/\\\&copy; ${{ steps.year.outputs.YEAR }} Crandall Software LLC/g" index.html
+          sed -i -E "s/(&copy; )([0-9]{4})( Crandall Software LLC)/\1${{ steps.year.outputs.YEAR }}\3/g" index.html
 
       - name: Check for changes
         id: git-check
